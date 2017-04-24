@@ -1,0 +1,17 @@
+{
+  "name": "wordpress-automatisation",
+  "version": "1.0",
+  "description": "README.md",
+  "author": "jeromearsene@gmail.com",
+  "private": false,
+
+  "scripts": {
+    "newWordpress": "node createWordpress",
+    "newArticle": "node writeArticle"
+  },
+
+  "dependencies": {
+    "diskdb": "^0.1.17",
+    "nightmare": "^2.10.0"
+  }
+}
