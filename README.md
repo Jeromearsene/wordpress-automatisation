@@ -16,7 +16,7 @@
 
 ### For generate a Wordpress
 
-° `npm run newWordpress`
+`npm run newWordpress`
 
 Wait the end of the process
 
