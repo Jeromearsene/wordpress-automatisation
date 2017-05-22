@@ -5,9 +5,9 @@ db.connect('./', ['wordpressAccountDatabase']);
 
 const Nightmare = require('nightmare');
 const nightmare = Nightmare({
-    /*openDevTools: {
+    openDevTools: {
         mode: 'detach'
-    },*/
+    },
     show: true });
 
 let mail
@@ -45,13 +45,17 @@ nightmare
             .type("input#email", mail)
             .type("input#password", password)
             .click(".logged-out-form__footer button")
-            .wait(3500)
-            .click(".email-confirmation__button")
-            .wait(2000)
-            .evaluate(()=>{
+            .wait(function() {
+                const button = document.querySelector('button.email-confirmation__button');
+                return button && button.textContent === 'Continuer';
+            }, 1000)
+            .click("button.email-confirmation__button")
+            .wait(3000)
+
+            .evaluate(()=> {
                 return document.querySelector("#wp-admin-bar-blog-info a.ab-item .ab-site-description").textContent
             })
-            .then((websiteName)=>{
+            .then((websiteName)=> {
                 // Sauvegarde les données du compte Wordpress créé en BDD
                 db.wordpressAccountDatabase.save({"mail": mail, "siteName": websiteName, "password": password, "username": username});
 
@@ -84,13 +88,4 @@ nightmare
                     })
             })
 
-
-
     })
-
-
-
-
-
-
-
