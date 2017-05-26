@@ -1,7 +1,7 @@
 "use strict"
 
 const db = require('diskdb');
-db.connect('./', ['wordpressAccountDatabase']);
+db.connect('./BDD/', ['wordpressAccountDatabase']);
 
 const Nightmare = require('nightmare');
 const nightmare = Nightmare({
