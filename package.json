@@ -5,12 +5,13 @@
   "author": "jeromearsene@gmail.com",
   "private": false,
   "scripts": {
-    "newWordpress": "node createWordpress",
+    "newWordpress": "node App/createWordpress",
     "newArticle": "node writeArticle"
   },
   "dependencies": {
     "cleverbot-node": "^0.3.10",
     "diskdb": "^0.1.17",
-    "nightmare": "^2.10.0"
+    "nightmare": "^2.10.0",
+    "nightmare-iframe-manager": "0.0.4"
   }
 }
