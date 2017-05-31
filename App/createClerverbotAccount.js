@@ -1,7 +1,7 @@
 "use strict"
 
 const db = require('diskdb');
-db.connect('./BDD/', ['clerverbotAccount']);
+db.connect('./App/BDD/', ['clerverbotAccount']);
 
 const Nightmare = require('nightmare');
 const nightmare = Nightmare({

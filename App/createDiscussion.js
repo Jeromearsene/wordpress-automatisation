@@ -1,7 +1,7 @@
 "use strict"
 
 const db = require('diskdb');
-db.connect('./BDD/', ['clerverbotAccount', 'cleverbotDiscussion']);
+db.connect('./App/BDD/', ['clerverbotAccount', 'cleverbotDiscussion']);
 
 const key1 = db.clerverbotAccount.find()[0].apiKey
 const key2 = db.clerverbotAccount.find()[1].apiKey
@@ -15,15 +15,26 @@ let whoWrite = cleverbot1;
 cleverbot1.bot.configure({botapi: key1});
 cleverbot2.bot.configure({botapi: key2});
 
+let discussion = ""
+let countMessage = -1
+
 function cleverbotWrite(message)
 {
+    countMessage ++
+
     console.log(whoWrite.name, ": ", message)
-    db.cleverbotDiscussion.save({"botName": whoWrite.name, "message": message});
+    let messageHTML = "<b>" + whoWrite.name + "</b>: <p>" + message + "</p><br>"
+    discussion += messageHTML
+    // db.cleverbotDiscussion.save({"botName": whoWrite.name, "message": message});
 
     whoWrite.bot.write(message, function (response)
     {
         whoWrite = (whoWrite == cleverbot2) ? cleverbot1 : cleverbot2
-        cleverbotWrite(response.message)
+
+        if(countMessage < 4)
+            cleverbotWrite(response.message)
+        else
+            db.cleverbotDiscussion.save({"discussion": discussion})
     })
 }
 

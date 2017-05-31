@@ -1,7 +1,7 @@
 "use strict"
 
 const db = require('diskdb');
-db.connect('./BDD/', ['wordpressAccountDatabase']);
+db.connect('./App/BDD/', ['wordpressAccountDatabase']);
 
 const Nightmare = require('nightmare');
 const nightmare = Nightmare({
@@ -33,8 +33,8 @@ nightmare
 
         // Va créer un Wordpress
         return nightmare.goto("https://wordpress.com/start/website/design-type/fr?ref=homepage")
-            .click(".design-type__choice-link")
-            .wait(3000)
+            .click(".design-type__choice")
+            .wait(4000)
             .click(".card.theme.is-actionable a.theme__active-focus")
             .type("#search-component-1", username)
             .wait(5000)
@@ -79,9 +79,9 @@ nightmare
                                     .goto(result)
                                     .evaluate(()=>{
                                     })
-                                    .then((url)=>
+                                    .then(()=>
                                     {
-
+                                        process.exit()
                                     })
                                     .end()
                             })
