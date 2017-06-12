@@ -7,10 +7,10 @@ const Nightmare = require('nightmare');
 require('nightmare-iframe-manager')(Nightmare);
 
 const nightmare = Nightmare({
-    openDevTools: {
-     mode: 'detach'
-     },
-    show: true });
+    /*openDevTools: {
+        mode: 'detach'
+     },*/
+    show: false });
 
 
 // Récupère le premier compte stocké en BDD
@@ -31,7 +31,7 @@ if (account)
         .wait(".masterbar__publish a.masterbar__item-new")
         .click(".masterbar__publish a.masterbar__item-new")
         .wait(".editor__header .editor-title textarea")
-        .type(".editor__header .editor-title textarea", "Test")
+        .type(".editor__header .editor-title textarea", "Conversation d'IA")
         .wait(4000)
         .click(".segmented-control__item:nth-child(2) a")
         .insert("#tinymce-1", discussion.discussion)
@@ -39,9 +39,9 @@ if (account)
         .evaluate(()=>
         {
         })
-        .then((result)=>
+        .then(()=>
         {
-            db.cleverbotDiscussion.remove({_id : discussion._id});
+            db.cleverbotDiscussion.remove({_id: discussion._id});
         })
     .end()
 }

@@ -8,7 +8,7 @@ const nightmare = Nightmare({
  /*   openDevTools: {
         mode: 'detach'
     },*/
-    show: true });
+    show: false });
 
 let mail
 let username
@@ -25,8 +25,7 @@ nightmare
             mail = document.getElementById('eposta_adres').value
             username = mail.split("@")[0]
             return {"mail": mail, "username": username}
-        }
-    )
+        })
     .then((result)=>
     {
         mail = result.mail

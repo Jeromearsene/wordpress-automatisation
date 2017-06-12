@@ -5,10 +5,10 @@ db.connect('./App/BDD/', ['wordpressAccountDatabase']);
 
 const Nightmare = require('nightmare');
 const nightmare = Nightmare({
-    openDevTools: {
+   /* openDevTools: {
         mode: 'detach'
-    },
-    show: true });
+    },*/
+    show: false });
 
 let mail
 let username
