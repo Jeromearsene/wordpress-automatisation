@@ -21,6 +21,12 @@
 Wait the end of the process
 
 
+### For generate an article
+
+`npm run newArticle`
+
+Wait the end of the process
+
 <br><br>
 
 _Comments in French, sorry :)_

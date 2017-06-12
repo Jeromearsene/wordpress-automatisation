@@ -2,8 +2,8 @@
 
 const cp = require('child_process')
 const db = require('diskdb');
-db.connect('./App/BDD/', ['wordpressAccountDatabase', 'clerverbotAccount']);
 
+db.connect(__dirname + '/BDD/', ['wordpressAccountDatabase', 'clerverbotAccount', 'cleverbotDiscussion']);
 
 const createSomeWordpressAccount = (numberOfWordpress, counter)=>
 {
@@ -54,3 +54,27 @@ const createSomeClerverbotAccount = (numberOfClerverbot, counter) =>
 createSomeClerverbotAccount(2 - db.clerverbotAccount.find().length)
 
 
+
+
+
+const createSomeDiscussion = (numberOfDiscussion, counter) =>
+{
+    counter = counter || 0
+    const child = cp.fork(__dirname + '/createDiscussion.js')
+
+    if(counter < numberOfDiscussion && numberOfDiscussion > 0)
+    {
+        counter ++
+        console.log(counter + "/" + numberOfDiscussion)
+        child.on('disconnect', () =>
+        {
+            console.log("Process finished")
+            createSomeDiscussion(numberOfDiscussion, counter)
+        })
+    }
+
+    else
+        console.log("All discussions accounts are created !")
+}
+
+createSomeDiscussion(3 - db.cleverbotDiscussion.find().length)

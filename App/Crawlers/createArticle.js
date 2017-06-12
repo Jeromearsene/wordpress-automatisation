@@ -1,7 +1,7 @@
 "use strict"
 
 const db = require('diskdb');
-db.connect('./App/BDD/', ['wordpressAccountDatabase', 'cleverbotDiscussion']);
+db.connect(__dirname + '/../BDD/', ['wordpressAccountDatabase', 'cleverbotDiscussion']);
 
 const Nightmare = require('nightmare');
 require('nightmare-iframe-manager')(Nightmare);

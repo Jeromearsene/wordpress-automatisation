@@ -1,7 +1,7 @@
 "use strict"
 
 const db = require('diskdb');
-db.connect('./BDD/', ['clerverbotAccount', 'cleverbotDiscussion']);
+db.connect(__dirname+ '/BDD/', ['clerverbotAccount', 'cleverbotDiscussion']);
 
 const key1 = db.clerverbotAccount.find()[0].apiKey
 const key2 = db.clerverbotAccount.find()[1].apiKey
@@ -33,12 +33,13 @@ function cleverbotWrite(message)
     {
         whoWrite = (whoWrite == cleverbot2) ? cleverbot1 : cleverbot2
 
-        if(countMessage < 100)
+        if(countMessage < 3)
             cleverbotWrite(response.message)
         else
         {
             db.cleverbotDiscussion.save({"discussion": discussion})
             // db.clerverbotAccount.remove()
+            process.exit()
         }
     })
 }

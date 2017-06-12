@@ -5,8 +5,8 @@
   "author": "jeromearsene@gmail.com",
   "private": false,
   "scripts": {
-    "newWordpress": "node App/createWordpress",
-    "newArticle": "node writeArticle"
+    "newWordpress": "node App/Crawlers/createWordpress",
+    "newArticle": "node App/Crawlers/createArticle"
   },
   "dependencies": {
     "cleverbot-node": "^0.3.10",
